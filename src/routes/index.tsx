@@ -40,12 +40,6 @@ export const getCityData = server$(async (search: string) => {
 export default component$(() => {
 	const searchTerm = useSignal<string>('Tampa')
 	const activeCity = useSignal<string>('')
-	const options = {
-		weekday: 'short',
-		month: 'short',
-		day: 'numeric',
-		year: 'numeric'
-	}
 
 	const searchResults = useStore<Record<string, LocationData[]>>({ value: [] })
 
@@ -87,7 +81,7 @@ export default component$(() => {
 					return (
 						<>
 							{searchTerm.value != '' && (
-								<div class='dropdown  bg-white z-25 '>
+								<div class='dropdown  bg-white '>
 									{locations.length > 0 &&
 										locations?.map((item: any) => (
 											<p key={item.id}>
@@ -138,10 +132,12 @@ export default component$(() => {
 									{local.forecast?.forecastday &&
 										local.forecast.forecastday.map((day: any) => (
 											<div key={day.date}>
-												{new Date(day.date).toLocaleDateString(
-													'en-US',
-													options
-												)}
+												{new Date(day.date).toLocaleDateString('en-US', {
+													weekday: 'short',
+													month: 'short',
+													day: 'numeric',
+													year: 'numeric'
+												})}
 												- {day.day.avgtemp_f}&deg;
 											</div>
 										))}
