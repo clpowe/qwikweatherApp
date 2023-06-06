@@ -1,0 +1,31 @@
+.maintemperature {
+	display: grid;
+	justify-items: center;
+	position: relative;
+	height: 60%;
+}
+
+.tempContainer {
+	position: relative;
+	width: 100%;
+	display: grid;
+	justify-content: center;
+	max-width: 500px;
+	container-type: inline-size;
+}
+
+.image {
+	grid-column: 1;
+	grid-row: 1;
+	z-index: 1;
+}
+
+.temp {
+	grid-column: 1;
+	grid-row: 1;
+	font-size: 50cqw;
+	padding-top: 20cqh;
+	font-weight: 700;
+	align-self: end;
+	justify-self: center;
+}
