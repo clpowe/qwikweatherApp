@@ -5,11 +5,7 @@ import {
 	useSignal,
 	useStore
 } from '@builder.io/qwik'
-import {
-	server$,
-	type DocumentHead,
-	type RequestEvent
-} from '@builder.io/qwik-city'
+import { server$, type DocumentHead } from '@builder.io/qwik-city'
 import { InfoPane } from '~/components/Info-pane'
 import { MainTemp } from '~/components/main-temp'
 
