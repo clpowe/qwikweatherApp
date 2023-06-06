@@ -5,7 +5,11 @@ import {
 	useSignal,
 	useStore
 } from '@builder.io/qwik'
-import { server$, type DocumentHead } from '@builder.io/qwik-city'
+import {
+	server$,
+	type DocumentHead,
+	type RequestEvent
+} from '@builder.io/qwik-city'
 import { InfoPane } from '~/components/Info-pane'
 import { MainTemp } from '~/components/main-temp'
 
@@ -20,8 +24,9 @@ export type LocationData = {
 }
 
 export const getLocationData = server$(async (search: string) => {
-
-	const url = `http://api.weatherapi.com/v1/search.json?key=${import.meta.env.VITE_WEATHER_API}&q=${search}&aqi=no`
+	const url = `http://api.weatherapi.com/v1/search.json?key=${
+		import.meta.env.VITE_WEATHER_API
+	}&q=${search}&aqi=no`
 
 	const response = await fetch(url)
 	const data = response.json()
@@ -29,7 +34,7 @@ export const getLocationData = server$(async (search: string) => {
 })
 
 export const getCityData = server$(async (search: string) => {
-	const url = `http://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API}&q=${search}&days=7&aqi=no&alerts=no`
+	const url = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${search}&days=7&aqi=no&alerts=no`
 
 	const res = await fetch(url)
 	const data = await res.json()
