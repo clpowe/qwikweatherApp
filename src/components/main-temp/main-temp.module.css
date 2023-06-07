@@ -2,7 +2,6 @@
 	display: grid;
 	justify-items: center;
 	position: relative;
-	height: 60%;
 }
 
 .tempContainer {
@@ -14,18 +13,30 @@
 	container-type: inline-size;
 }
 
+.location {
+	width: 100%;
+	font-size: 2rem;
+	font-weight: 600;
+}
+
 .image {
 	grid-column: 1;
 	grid-row: 1;
 	z-index: 1;
+	transform: translateX(-6%);
 }
 
 .temp {
 	grid-column: 1;
 	grid-row: 1;
-	font-size: 50cqw;
-	padding-top: 20cqh;
+	font-size: clamp(10rem, 50vw, 14rem);
+	line-height: 40cqi;
+	transform: translateY(30cqi);
 	font-weight: 700;
-	align-self: end;
+	align-self: center;
 	justify-self: center;
+	color: #264653;
+	leading-trim: both;
+	text-edge: cap;
+	letter-spacing: -0.05em;
 }

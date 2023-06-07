@@ -14,16 +14,18 @@ interface MainTempProps {
 export const MainTemp = component$<MainTempProps>((props) => {
 	return (
 		<div class={styles.maintemperature}>
-			<h1>{props.name}</h1>
+			<h1 class={styles.location}>{props.name}</h1>
 			<div class={styles.tempContainer}>
 				<img
+					width='500'
+					height='450'
 					class={styles.image}
 					src={`https://ik.imagekit.io/cpds/weatherapp/day/${props.imgCode}.png`}
 					alt={`${props.condition}`}
 				/>
 				<p class={styles.temp}>{Math.round(props.temperature)}&deg;</p>
 			</div>
-			<p>{props.condition}</p>
+			<span class='text-sm'>{props.condition}</span>
 			<div class='flex'>
 				<div class='grid justify-items-center'>
 					<p>{props.high}&deg;</p>
