@@ -68,3 +68,29 @@ body {
 	height: 100%;
 	background: radial-gradient(50% 50% at 50% 50%, #65d9e6 0%, #24b1c1 100%);
 }
+
+.app-name {
+	font-size: 2.5rem;
+	font-weight: 500;
+}
+
+.search {
+	display: grid;
+	position: relative;
+}
+
+#search {
+	height: 2.5rem;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+}
+
+.dropdown {
+	position: absolute;
+	background: #f1f5f9;
+	z-index: 10;
+	top: 3rem;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	width: 100%;
+}

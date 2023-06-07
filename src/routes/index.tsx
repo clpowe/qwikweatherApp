@@ -41,7 +41,7 @@ export const getCityData = server$(async (search: string) => {
 })
 
 export default component$(() => {
-	const searchTerm = useSignal<string>('')
+	const searchTerm = useSignal<string>('Tampa')
 	const activeCity = useSignal<string>('')
 
 	const searchResults = useStore<Record<string, LocationData[]>>({ value: [] })
@@ -62,50 +62,50 @@ export default component$(() => {
 
 	return (
 		<>
-			<div class='grid'>
-				<label for='search'>Enter City Name</label>
+			<h1 class='app-name'>Weather App</h1>
+			<div class='search'>
 				<input
 					id='search'
 					class=' bg-slate-100 '
 					value={searchTerm.value}
+					placeholder='enter city name'
 					onInput$={(e: Event) =>
 						(searchTerm.value = (e.target as HTMLInputElement).value)
 					}
 				/>
-				{searchTerm.value}
+				<Resource
+					value={weatherResource}
+					onPending={() => <div class='dropdown'>Loading...</div>}
+					onRejected={() => <div class='dropdown'>Failed to load weather</div>}
+					onResolved={(locations: any) => {
+						if (locations.length === 0) {
+							return <div class='dropdown'>No Locations found</div>
+						}
+						searchResults.value = locations
+						return (
+							<>
+								{searchTerm.value != '' && (
+									<div class='dropdown  '>
+										{locations.length > 0 &&
+											locations?.map((item: any) => (
+												<p key={item.id}>
+													<button
+														onClick$={() => {
+															activeCity.value = item.url
+															searchTerm.value = ''
+														}}
+													>
+														{item.name},{item.country}
+													</button>
+												</p>
+											))}
+									</div>
+								)}
+							</>
+						)
+					}}
+				/>
 			</div>
-			<Resource
-				value={weatherResource}
-				onPending={() => <div>Loading...</div>}
-				onRejected={() => <div>Failed to load weather</div>}
-				onResolved={(locations: any) => {
-					if (locations.length === 0) {
-						return <div>No weather</div>
-					}
-					searchResults.value = locations
-					return (
-						<>
-							{searchTerm.value != '' && (
-								<div class='dropdown  bg-white '>
-									{locations.length > 0 &&
-										locations?.map((item: any) => (
-											<p key={item.id}>
-												<button
-													onClick$={() => {
-														activeCity.value = item.url
-														searchTerm.value = ''
-													}}
-												>
-													{item.name},{item.country}
-												</button>
-											</p>
-										))}
-								</div>
-							)}
-						</>
-					)
-				}}
-			/>
 			<div>
 				{activeCity.value ? (
 					<Resource
