@@ -21,7 +21,7 @@ export type LocationData = {
 
 export const getLocationData = server$(async (search: string) => {
 	const url = `http://api.weatherapi.com/v1/search.json?key=${
-		import.meta.env.VITE_WEATHER_API
+		import.meta.env.VITE_WEATHER_API_KEY
 	}&q=${search}&aqi=no`
 
 	const response = await fetch(url)
@@ -30,17 +30,18 @@ export const getLocationData = server$(async (search: string) => {
 })
 
 export const getCityData = server$(async (search: string) => {
-	const url = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${search}&days=7&aqi=no&alerts=no`
+	const url = `http://api.weatherapi.com/v1/forecast.json?key=${
+		import.meta.env.VITE_WEATHER_API_KEY
+	}&q=${search}&days=7&aqi=no&alerts=no`
 
 	const res = await fetch(url)
 	const data = await res.json()
-	console.log(data)
 
 	return data
 })
 
 export default component$(() => {
-	const searchTerm = useSignal<string>('Tampa')
+	const searchTerm = useSignal<string>('')
 	const activeCity = useSignal<string>('')
 
 	const searchResults = useStore<Record<string, LocationData[]>>({ value: [] })
@@ -53,7 +54,9 @@ export default component$(() => {
 
 	const cityResource = useResource$(({ track }) => {
 		track(() => activeCity.value)
-
+		if (activeCity.value === '') {
+			return
+		}
 		return getCityData(activeCity.value)
 	})
 
