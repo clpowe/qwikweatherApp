@@ -10,4 +10,6 @@ interface ForecastProps {
 	low: number
 }
 
-export const forecast = component$<ForecastProps>((props) => {})
+export const forecast = component$<ForecastProps>(() => {
+	return <></>
+})

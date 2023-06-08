@@ -41,7 +41,7 @@ export const getCityData = server$(async (search: string) => {
 })
 
 export default component$(() => {
-	const searchTerm = useSignal<string>('Tampa')
+	const searchTerm = useSignal<string>('')
 	const activeCity = useSignal<string>('')
 
 	const searchResults = useStore<Record<string, LocationData[]>>({ value: [] })
@@ -110,7 +110,7 @@ export default component$(() => {
 					/>
 				</div>
 			</header>
-			<div class='overflow-auto space-y-14'>
+			<div class='overflow-auto space-y-14 mb-10'>
 				{activeCity.value ? (
 					<Resource
 						value={cityResource}
@@ -143,7 +143,7 @@ export default component$(() => {
 											local.forecast.forecastday.map((day: any) => (
 												<div
 													key={day.date}
-													class='grid bg-white/20 border-white/70 border-2 rounded-lg p-4 '
+													class='grid w-32 justify-items-center  '
 												>
 													<div class='text-center'>
 														{new Date(day.date).toLocaleDateString('en-US', {
@@ -152,7 +152,14 @@ export default component$(() => {
 															day: 'numeric'
 														})}
 													</div>
-													<div class='text-4xl font-bold text-center'>
+													<img
+														width='84'
+														height='66'
+														class='row-start-2 col-start-1 z-10 translate-x-[-6%]'
+														src={`https://ik.imagekit.io/cpds/weatherapp/day/${day.day.condition.code}.png`}
+														alt={`${day.day.condition.text}`}
+													/>
+													<div class='text-4xl font-bold text-center row-start-2 col-start-1 mt-14'>
 														{Math.round(day.day.avgtemp_f)}&deg;
 													</div>
 												</div>
