@@ -22,6 +22,12 @@
  *
  */
 
+:root {
+	--dark-blue: oklch(37.53% 0.044 226.2);
+	--light-blue: oklch(82.33% 0.106 205.25);
+	--blue: oklch(69.77% 0.113 206.92);
+}
+
 @font-face {
 	font-family: 'Rubik';
 	src: url('/fonts/Rubik-Light.ttf') format('truetype');
@@ -66,7 +72,11 @@ body {
 	padding: 0;
 	line-height: inherit;
 	height: 100%;
-	background: radial-gradient(50% 50% at 50% 50%, #65d9e6 0%, #24b1c1 100%);
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		var(--light-blue),
+		var(--blue)
+	);
 }
 
 .app-name {

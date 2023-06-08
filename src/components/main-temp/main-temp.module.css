@@ -31,12 +31,24 @@
 	grid-row: 1;
 	font-size: clamp(10rem, 50vw, 14rem);
 	line-height: 40cqi;
-	transform: translateY(30cqi);
+	transform: translateY(32cqi);
 	font-weight: 700;
 	align-self: center;
 	justify-self: center;
-	color: #264653;
+	color: var(--dark-blue);
 	leading-trim: both;
 	text-edge: cap;
 	letter-spacing: -0.05em;
+}
+
+.condition {
+	font-size: 2rem;
+	font-weight: 600;
+	color: var(--dark-blue);
+}
+
+.hilow {
+	font-size: 2rem;
+	color: var(--dark-blue);
+	font-weight: 600;
 }

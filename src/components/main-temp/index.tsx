@@ -25,14 +25,14 @@ export const MainTemp = component$<MainTempProps>((props) => {
 				/>
 				<p class={styles.temp}>{Math.round(props.temperature)}&deg;</p>
 			</div>
-			<span class='text-sm'>{props.condition}</span>
-			<div class='flex'>
+			<span class={styles.condition}>{props.condition}</span>
+			<div class='flex w-full mx-auto mt-10 justify-around'>
 				<div class='grid justify-items-center'>
-					<p>{props.high}&deg;</p>
+					<p class={styles.hilow}>{props.high}&deg;</p>
 					<p>Max temp</p>
 				</div>
 				<div class='grid justify-items-center'>
-					<p>{props.low}&deg;</p>
+					<p class={styles.hilow}>{props.low}&deg;</p>
 					<p>Min temp</p>
 				</div>
 			</div>
