@@ -26,7 +26,7 @@ export const MainTemp = component$<MainTempProps>((props) => {
 				<p class={styles.temp}>{Math.round(props.temperature)}&deg;</p>
 			</div>
 			<span class={styles.condition}>{props.condition}</span>
-			<div class='flex w-full mx-auto mt-10 justify-around'>
+			<div class='flex w-full mx-auto justify-around'>
 				<div class='grid justify-items-center'>
 					<p class={styles.hilow}>{props.high}&deg;</p>
 					<p>Max temp</p>

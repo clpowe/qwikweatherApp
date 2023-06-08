@@ -110,7 +110,7 @@ export default component$(() => {
 					/>
 				</div>
 			</header>
-			<div>
+			<div class='overflow-auto space-y-14'>
 				{activeCity.value ? (
 					<Resource
 						value={cityResource}
@@ -138,18 +138,26 @@ export default component$(() => {
 										sunrise={local.forecast.forecastday[0].astro.sunrise}
 										sunset={local.forecast.forecastday[0].astro.sunrise}
 									/>
-									{local.forecast?.forecastday &&
-										local.forecast.forecastday.map((day: any) => (
-											<div key={day.date}>
-												{new Date(day.date).toLocaleDateString('en-US', {
-													weekday: 'short',
-													month: 'short',
-													day: 'numeric',
-													year: 'numeric'
-												})}
-												- {day.day.avgtemp_f}&deg;
-											</div>
-										))}
+									<div class='grid grid-flow-col gap-4 overflow-x-auto overscroll-x-contain'>
+										{local.forecast?.forecastday &&
+											local.forecast.forecastday.map((day: any) => (
+												<div
+													key={day.date}
+													class='grid bg-white/20 border-white/70 border-2 rounded-lg p-4 '
+												>
+													<div class='text-center'>
+														{new Date(day.date).toLocaleDateString('en-US', {
+															weekday: 'short',
+															month: 'short',
+															day: 'numeric'
+														})}
+													</div>
+													<div class='text-4xl font-bold text-center'>
+														{Math.round(day.day.avgtemp_f)}&deg;
+													</div>
+												</div>
+											))}
+									</div>
 								</>
 							)
 						}}
